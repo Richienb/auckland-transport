@@ -21,7 +21,12 @@
 		"test": "yarn lint && ava"
 	},
 	"keywords": [],
-	"dependencies": {},
+	"dependencies": {
+		"camelcase-keys": "^6.1.2",
+		"ky": "^0.17.0",
+		"ky-universal": "^0.5.0",
+		"snakecase-keys": "^3.1.2"
+	},
 	"devDependencies": {
 		"ava": "^3.3.0",
 		"eslint-config-richienb": "^0.3.0",
