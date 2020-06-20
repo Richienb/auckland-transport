@@ -1,52 +1,43 @@
 {
-	"name": "the-module",
+	"name": "auckland-transport",
 	"version": "0.0.0",
-	"description": "My awesome module.",
-	"repository": "https://github.com/Richienb/the-module.git",
+	"description": "A simplified interface for the Auckland Transport API.",
+	"repository": "https://github.com/Richienb/auckland-transport.git",
 	"author": "Richie Bendall <richiebendall@gmail.com>",
 	"license": "MIT",
-	"main": "dist/index.js",
+	"main": "index.js",
 	"files": [
-		"src/**/*",
-		"dist/**/*"
+		"index.js",
+		"index.d.ts"
 	],
 	"engines": {
 		"node": ">=10"
 	},
 	"scripts": {
-		"docs": "typedoc",
-		"build": "tsc && yarn docs",
-		"dev": "yarn tsc --watch",
 		"lint": "xo",
-		"test": "yarn lint && ava"
+		"test": "xo && ava"
 	},
-	"keywords": [],
+	"keywords": [
+		"auckland",
+		"transport",
+		"api",
+		"http",
+		"request"
+	],
 	"dependencies": {
-		"camelcase-keys": "^6.1.2",
-		"ky": "^0.17.0",
-		"ky-universal": "^0.5.0",
-		"snakecase-keys": "^3.1.2"
+		"ky": "^0.20.0",
+		"ky-universal": "^0.6.0",
+		"snakecase-keys": "^3.2.0"
 	},
 	"devDependencies": {
-		"ava": "^3.3.0",
-		"eslint-config-richienb": "^0.3.0",
-		"ts-node": "^8.6.2",
-		"typedoc": "^0.16.9",
-		"typescript": "^3.7.5",
-		"xo": "^0.25.3"
+		"ava": "^3.8.1",
+		"eslint-config-richienb": "^0.4.2",
+		"xo": "^0.30.0"
 	},
 	"resolutions": {
 		"eslint": "^6.8.0"
 	},
 	"xo": {
-		"extends": "richienb/ts"
-	},
-	"ava": {
-		"extensions": [
-			"ts"
-		],
-		"require": [
-			"ts-node/register"
-		]
+		"extends": "richienb"
 	}
 }

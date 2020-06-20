@@ -1,43 +1,59 @@
-# The module [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/the-module/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/the-module)
+# auckland-transport [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/auckland-transport/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/auckland-transport)
 
-My awesome module.
+A simplified interface for the Auckland Transport API.
 
-[![NPM Badge](https://nodei.co/npm/the-module.png)](https://npmjs.com/package/the-module)
+[![NPM Badge](https://nodei.co/npm/auckland-transport.png)](https://npmjs.com/package/auckland-transport)
 
 ## Install
 
 ```sh
-npm install the-module
+npm install auckland-transport
 ```
 
 ## Usage
 
 ```js
-const theModule = require("the-module");
+const at = require("auckland-transport");
 
-theModule("unicorns");
-//=> 'unicorns & rainbows'
+(async () => {
+	const data = await at("gtfs/routes/geosearch", {
+		key: "some api key",
+		data: {
+			lat: -36.8483957,
+			lng: 174.7600113,
+			distance: 100,
+		},
+	});
+
+	const {route_short_name, route_long_name} = data[0]
+
+	console.log(`Bus ${route_short_name} - ${route_long_name}`)
+})();
 ```
 
 ## API
 
-For more information, see the [documentation](https://richienb.github.io/the-module).
+### aucklandTransport(method, options)
 
-### theModule(input, options?)
-
-#### input
+#### method
 
 Type: `string`
 
-Lorem ipsum.
+The [API method](https://dev-portal.at.govt.nz/docs/services/) to call.
 
 #### options
 
 Type: `object`
 
-##### postfix
+##### key
 
-Type: `string`\
-Default: `rainbows`
+Type: `string`
 
-Lorem ipsum.
+The api key to use.
+
+##### data
+
+Type: `object`\
+Default: `{}`
+
+The options to pass to the api.
