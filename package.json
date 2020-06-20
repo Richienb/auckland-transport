@@ -1,6 +1,6 @@
 {
 	"name": "auckland-transport",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "A simplified interface for the Auckland Transport API.",
 	"repository": "https://github.com/Richienb/auckland-transport.git",
 	"author": "Richie Bendall <richiebendall@gmail.com>",
