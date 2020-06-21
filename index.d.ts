@@ -4,7 +4,7 @@ declare namespace aucklandTransport {
 		key: string
 
 		/** The options to pass to the api. */
-		options?: Record<string, string | number | boolean>
+		data?: Record<string, string | number | boolean>
 	}
 }
 
