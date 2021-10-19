@@ -2,20 +2,23 @@
 	"name": "auckland-transport",
 	"version": "1.0.1",
 	"description": "A simplified interface for the Auckland Transport API.",
-	"repository": "https://github.com/Richienb/auckland-transport.git",
-	"author": "Richie Bendall <richiebendall@gmail.com>",
+	"repository": "Richienb/auckland-transport",
+	"author": {
+		"name": "Richie Bendall",
+		"email": "richiebendall@gmail.com"
+	},
 	"license": "MIT",
-	"main": "index.js",
+	"type": "module",
+	"exports": "./index.js",
 	"files": [
 		"index.js",
 		"index.d.ts"
 	],
 	"engines": {
-		"node": ">=10"
+		"node": ">=12.20"
 	},
 	"scripts": {
-		"lint": "xo",
-		"test": "xo && ava"
+		"test": "xo && ava && tsd"
 	},
 	"keywords": [
 		"auckland",
@@ -25,19 +28,12 @@
 		"request"
 	],
 	"dependencies": {
-		"ky": "^0.20.0",
-		"ky-universal": "^0.6.0",
-		"snakecase-keys": "^3.2.0"
+		"axios": "^0.23.0",
+		"type-fest": "^2.5.1"
 	},
 	"devDependencies": {
-		"ava": "^3.8.1",
-		"eslint-config-richienb": "^0.4.2",
-		"xo": "^0.30.0"
-	},
-	"resolutions": {
-		"eslint": "^6.8.0"
-	},
-	"xo": {
-		"extends": "richienb"
+		"ava": "^3.15.0",
+		"tsd": "^0.18.0",
+		"xo": "^0.45.0"
 	}
 }

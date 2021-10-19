@@ -1,25 +1,24 @@
-const test = require("ava")
-const at = require(".")
+import process from 'node:process';
+import test from 'ava';
+import aucklandTransport from './index.js';
 
-test("main", async t => {
-	const key = process.env.AT_HOP_KEY
+test('main', async t => {
+	const apiKey = process.env.AT_HOP_KEY;
 
-	if (!key) {
-		console.log("Set AT_HOP_KEY to test!")
-		return t.pass()
+	if (!apiKey) {
+		console.log('Set AT_HOP_KEY to test!');
+		return t.pass();
 	}
 
-	const data = await at("gtfs/routes/geosearch", {
-		key,
+	const [{route_short_name: routeShortName, route_long_name: routeLongName}] = await aucklandTransport('gtfs/routes/geosearch', {
+		apiKey,
 		data: {
-			lat: -36.8483957,
-			lng: 174.7600113,
-			distance: 100
-		}
-	})
+			lat: -36.848_395_7,
+			lng: 174.760_011_3,
+			distance: 100,
+		},
+	});
 
-	const { route_short_name: routeShortName, route_long_name: routeLongName } = data[0]
-
-	t.is(typeof routeShortName, "string")
-	t.is(typeof routeLongName, "string")
-})
+	t.is(typeof routeShortName, 'string');
+	t.is(typeof routeLongName, 'string');
+});

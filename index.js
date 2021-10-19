@@ -1,32 +1,30 @@
-"use strict"
+import axios from 'axios';
 
-const ky = require("ky-universal").extend({
-	throwHttpErrors: false
-})
-const snakecaseKeys = require("snakecase-keys")
-
-module.exports = async (method, { key, data = {} } = {}) => {
-	if (typeof method !== "string") {
-		throw new TypeError(`Expected a string, got ${typeof method}`)
+export default async function aucklandTransport(method, {apiKey, data} = {}) {
+	if (typeof method !== 'string') {
+		throw new TypeError(`Expected method to be a string, got ${typeof method}`);
 	}
 
-	if (typeof key !== "string") {
-		throw new TypeError(`Expected a string, got ${typeof key}`)
+	if (typeof apiKey !== 'string') {
+		throw new TypeError(`Expected apiKey to be a string, got ${typeof apiKey}`);
 	}
 
-	const request = await ky(method, {
-		prefixUrl: "https://api.at.govt.nz/v2/",
-		searchParams: {
-			"subscription-key": key,
-			...snakecaseKeys(data)
+	try {
+		const {data: {response}} = await axios(method, {
+			baseURL: 'https://api.at.govt.nz/v2/',
+			params: {
+				'subscription-key': apiKey,
+				...data,
+			},
+			responseType: 'json',
+		});
+
+		return response;
+	} catch (error) {
+		if (error.response) {
+			throw new Error(error.response.data.message);
 		}
-	})
 
-	const { status, response, message } = await request.json()
-
-	if (status !== "OK") {
-		throw new Error(message)
+		throw error;
 	}
-
-	return response
 }

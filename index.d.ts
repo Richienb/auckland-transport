@@ -1,36 +1,38 @@
-declare namespace aucklandTransport {
-	export interface Options {
-		/** The api key to use. */
-		key: string
+import {JsonObject} from 'type-fest';
 
-		/** The options to pass to the api. */
-		data?: Record<string, string | number | boolean>
-	}
+export interface Options {
+	/**
+	The API key to use.
+	*/
+	apiKey: string;
+
+	/**
+	The options to pass to the API.
+
+	@default {}
+	*/
+	data?: Record<string, string | number | boolean>;
 }
 
 /**
-A simplified interface for the Auckland Transport API.
+A simplified interface for the [Auckland Transport API](https://dev-portal.at.govt.nz/).
+
 @param method The [API method](https://dev-portal.at.govt.nz/docs/services/) to call.
+
 @example
 ```
-const at = require("auckland-transport");
+import aucklandTransport from 'auckland-transport';
 
-(async () => {
-	const data = await at("gtfs/routes/geosearch", {
-		key: "some api key",
-		data: {
-			lat: -36.8483957,
-			lng: 174.7600113,
-			distance: 100,
-		},
-	});
+const [{route_short_name, route_long_name}] = await aucklandTransport('gtfs/routes/geosearch', {
+	apiKey: 'some api key',
+	data: {
+		lat: -36.8483957,
+		lng: 174.7600113,
+		distance: 100,
+	},
+});
 
-	const {route_short_name, route_long_name} = data[0]
-
-	console.log(`Bus ${route_short_name} - ${route_long_name}`)
-})();
+console.log(`Bus ${route_short_name} - ${route_long_name}`);
 ```
 */
-declare function aucklandTransport(method: string, options: aucklandTransport.Options): object
-
-export = aucklandTransport
+export default function aucklandTransport<ResolveValueType extends JsonObject = JsonObject>(method: string, options: Options): Promise<ResolveValueType>;
