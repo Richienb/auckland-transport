@@ -1,4 +1,4 @@
-import {JsonObject} from 'type-fest';
+import {JsonObject, JsonArray} from 'type-fest';
 
 export interface Options {
 	/**
@@ -35,4 +35,4 @@ const [{route_short_name, route_long_name}] = await aucklandTransport('gtfs/rout
 console.log(`Bus ${route_short_name} - ${route_long_name}`);
 ```
 */
-export default function aucklandTransport<ResolveValueType extends JsonObject = JsonObject>(method: string, options: Options): Promise<ResolveValueType>;
+export default function aucklandTransport<ResolveValueType extends JsonObject | JsonArray = JsonObject | JsonArray>(method: string, options: Options): Promise<ResolveValueType>;
